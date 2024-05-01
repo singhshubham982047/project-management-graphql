@@ -3,11 +3,14 @@ import { config } from "dotenv";
 import { ruruHTML } from "ruru/server";
 import { createHandler } from "graphql-http/lib/use/express";
 import { schema } from "./schema/schema.js";
+import { ConnectDb } from "./config/db.js";
 
 config();
 
 const port = process.env.PORT || 5000;
 const app = express();
+
+ConnectDb();
 
 app.use(
   "/graphql",
