@@ -4,6 +4,7 @@ import { ruruHTML } from "ruru/server";
 import { createHandler } from "graphql-http/lib/use/express";
 import { schema } from "./schema/schema.js";
 import { ConnectDb } from "./config/db.js";
+import cors from "cors";
 
 config();
 
@@ -12,6 +13,11 @@ const app = express();
 
 ConnectDb();
 
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 app.use(
   "/graphql",
   createHandler({
